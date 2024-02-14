@@ -1,15 +1,9 @@
 import logging
-import random
-import re
 import socket
-import threading
-import time
 
 localIP = "127.0.0.1"
 localPort = 54321
 
-# clientIP = "127.0.0.1"
-# clientPort = 11111
 
 lossyIP = "127.0.0.1"
 
@@ -40,38 +34,22 @@ class UDP_Server():
         while True:
             msg, client = self.sock.recvfrom(1024)
             logging.info('Received data from client %s: %s', client, msg)
-            #t = threading.Thread(target=self.talk_to_client, args=(msg,client))
-            #t.start()
-            #t.join()
             self.talk_to_client(msg, client)
 
     def talk_to_client(self, message, address):
         if(message == b''):
             return
-        # print("bytesAddressPair = ", message)
-
-
-        #print("address = ", address)
 
         decoded_string = message.decode("utf-8")
 
         phrase_index = decoded_string.find("CRLF")
-        #print("phrase_index = ", phrase_index)
         result = message[phrase_index + 4:]
         if result[len(result) - 1] == b' ':
             result = result[:-1]
 
-        #print("message = ", message)
-        #print("after mess result = ", result)
         final_answer = b'SERVERTALKING '
         final_answer += result
         int_result = int(result)
-        #print("int_result = ", int_result)
-
-
-        # lossy_address = (clientIP, clientPort)
-        #final_answer = message
-        #print("final_answer = ", final_answer)
         self.sock.sendto(final_answer, (address[0], address[1]))
         self.send_to_server(int_result, message)
     def send_to_server(self, result, message):
@@ -94,10 +72,7 @@ class UDP_Server():
             message_to_send = all_data[i]
             index = message_to_send.find(b'CRLF')
             message_to_send = message_to_send[:index]
-            #print("message_to_send = " , message_to_send)
+
             self.sock.sendto(message_to_send,(ncatServerIP, ncatServerPort))
 
         pointer = counter
-
-
-        #print("all_data = ", all_data)
