@@ -1,8 +1,8 @@
 # reliable-udp
-reliable-udp is a client-server project. in this project i optimized the [User Datagram Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol) and made it reliable by using [Selective Repeat ARQ](https://en.wikipedia.org/wiki/Selective_Repeat_ARQ).<br/>
+reliable-udp is a client-server project. in this project i optimized the [User Datagram Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol) and made it reliable.<br/>
 In reliable-udp we took care of out of order and lost packets.<br/>
 ### How It Works
-User will send bunch of packets to our client, our client will transfer the packets to [Lossy Link](https://github.com/HirbodBehnam/lossy_link) which will reorder and loose some of our packets randomly and we're gonna make sure that our server recieves packets in the right order and 0% loss rate.
+User will send bunch of packets to our client, our client will transfer the packets to [Lossy Link](https://github.com/HirbodBehnam/lossy_link) which will reorder and loose some of our packets randomly and we're gonna make sure that our server recieves packets in the right order and 0% loss rate  by using [Selective Repeat ARQ](https://en.wikipedia.org/wiki/Selective_Repeat_ARQ).<br/>.
 <img width="799" alt="image" src="https://github.com/PoriaKH/reliable-udp/assets/94684621/c75fd798-4e0e-4a0f-bae0-dc34c755eedd">
 ### Usage
 ```
